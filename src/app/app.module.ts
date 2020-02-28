@@ -13,7 +13,7 @@ import { BookFormComponent } from './book-list/book-form/book-form.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
-import { BookService } from './services/book.service';
+import { BooksService } from './services/books.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { BookService } from './services/book.service';
   providers: [
     AuthService,
     AuthGuardService,
-    BookService
+    BooksService
   ],
   bootstrap: [AppComponent]
 })
