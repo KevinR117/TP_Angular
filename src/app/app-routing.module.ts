@@ -18,14 +18,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations : [
-    SignupComponent,
-    SigninComponent,
-    BookListComponent,
-    SingleBookComponent,
-    BookFormComponent,
-    HeaderComponent
-  ],
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
