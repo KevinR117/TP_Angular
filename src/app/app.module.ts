@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Routes, RouterModule } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
@@ -14,6 +14,17 @@ import { HeaderComponent } from './header/header.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { BooksService } from './services/books.service';
+
+
+const appRoutes: Routes = [
+  {path : 'auth/signin', component : SigninComponent},
+  {path : 'auth/signup', component : SignupComponent},
+  {path : 'books', canActivate : [AuthGuardService], component : BookListComponent},
+  {path : 'books/new', canActivate : [AuthGuardService], component : BookFormComponent},
+  {path : 'books/view/:id', canActivate : [AuthGuardService], component : SingleBookComponent},
+  {path : '', redirectTo : 'books', pathMatch : 'full'},
+  {path : '**', redirectTo : 'books'}
+];
 
 @NgModule({
   declarations: [
@@ -26,11 +37,11 @@ import { BooksService } from './services/books.service';
     HeaderComponent
   ],
   imports: [
+    RouterModule.forRoot(appRoutes),
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     AuthService,
